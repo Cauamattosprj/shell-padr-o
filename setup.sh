@@ -7,7 +7,9 @@ cd $HOME/Downloads/setup-tmp
 # Atualizar repositorios
 echo "Instalando e atualizando repositorios"
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install curl wget git timeshift vim htop -y
+
+# Instalar diversos aplicativos do dia a dia
+sudo apt install curl wget git timeshift vim htop wine wine64 libwine fonts-wine -y
 
 # Instalando Brave
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -45,27 +47,26 @@ sudo apt-get update -y
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 # instalar hidamari
-flatpak install flathub io.github.jeffshee.Hidamari
+flatpak install flathub io.github.jeffshee.Hidamari -y
 
 # papeis de parede hidamari
-mkdir -p /$HOME/Documents/Wallpapers
-cd /$HOME/Documents/Wallpapers
-
+# Criar diretório para wallpapers
+mkdir -p "$HOME/Videos/Hidamari"
+cd "$HOME/Videos/Hidamari"
+# Lista de URLs dos wallpapers
 wallpapers=(
-"https://mylivewallpapers.com/download/mobile-kyojuro-rengoku-forest-snow-live-wallpaper/?wpdmdl=58206&refresh=66b4063fe53981723074111"
-"https://mylivewallpapers.com/download/4k-see-you-later-eren-live-wallpaper/?wpdmdl=52995&refresh=66b3f286ea1e91723069062"
-"https://mylivewallpapers.com/download/3440x1440-kyojuro-rengoku-forest-snow-live-wallpaper/?wpdmdl=58205&refresh=66b4063fca0861723074111"
-"https://mylivewallpapers.com/download/qhd-akane-sgail-toriel-live-wallpaper/?wpdmdl=57850&refresh=66b3ed3cbece81723067708"
-"https://mylivewallpapers.com/download/4k-sekiro-mortal-blade-live-wallpaper/?wpdmdl=57787&refresh=66b4076c4c7f21723074412"
-"https://mylivewallpapers.com/download/4k-eren-yeager-and-titan-live-wallpaper/?wpdmdl=54160&refresh=66b3e39354c4b1723065235"
-"https://mylivewallpapers.com/download/ambush-aot-live-wallpaper/?wpdmdl=34622&refresh=66b40922c8f741723074850"
+    "https://mylivewallpapers.com/download/3440x1440-kyojuro-rengoku-forest-snow-live-wallpaper/?wpdmdl=58205&refresh=66b4f6d62f34e1723135702"
+    "https://mylivewallpapers.com/download/4k-see-you-later-eren-live-wallpaper/?wpdmdl=52995&refresh=66b4063fe53981723074111"
+    "https://mylivewallpapers.com/download/3440x1440-kyojuro-rengoku-forest-snow-live-wallpaper/?wpdmdl=58206&refresh=66b4063fe53981723074111"
+    "https://mylivewallpapers.com/download/qhd-akane-sgail-toriel-live-wallpaper/?wpdmdl=57850&refresh=66b4063fe53981723074111"
+    "https://mylivewallpapers.com/download/4k-sekiro-mortal-blade-live-wallpaper/?wpdmdl=57787&refresh=66b4063fe53981723074111"
+    "https://mylivewallpapers.com/download/4k-eren-yeager-and-titan-live-wallpaper/?wpdmdl=54160&refresh=66b4063fe53981723074111"
+    "https://mylivewallpapers.com/download/ambush-aot-live-wallpaper/?wpdmdl=34622&refresh=66b40922c8f74123074111"
 )
-
+# Baixar cada wallpaper
 for wallpaper in "${wallpapers[@]}"; do
-	echo "Baixando $wallpaper"
-	wget ¨wget -q "$wallpaper"
+    wget -q --content-disposition "$wallpaper"
 done
-
 
 flatpak run io.github.jeffshee.Hidamari
 
@@ -78,6 +79,10 @@ rm -f packages.microsoft.gpg
 sudo apt install apt-transport-https -y
 sudo apt update -y
 sudo apt install code -y # or code-insiders
+
+# baixar Bottles
+flatpak install flathub com.usebottles.bottles -y
+
 
 
 # reiniciar após configurações
